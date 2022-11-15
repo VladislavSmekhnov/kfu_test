@@ -11,7 +11,7 @@ public class RegionsEntity {
   @Column(name = "id")
   private Integer id;
 
-  @OneToMany(mappedBy = "regionId", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "regionId", cascade = CascadeType.ALL, orphanRemoval = true)
   private Set<CountriesEntity> countries;
 
   @Column(name = "name", length = 25)
