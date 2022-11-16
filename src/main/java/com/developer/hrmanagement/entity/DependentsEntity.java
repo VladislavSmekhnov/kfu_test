@@ -20,7 +20,7 @@ public class DependentsEntity {
   @Column(name = "relationship", length = 25)
   private String relationship;
 
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name = "employee_id", referencedColumnName = "id", nullable = false)
   private EmployeesEntity employeeId;
 

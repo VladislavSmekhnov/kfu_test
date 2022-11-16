@@ -1,5 +1,6 @@
 package com.developer.hrmanagement.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -18,11 +19,12 @@ public class DepartmentsEntity {
   @Column(name = "name", length = 30, nullable = false)
   private String name;
 
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name = "location_id", referencedColumnName = "id")
   private LocationsEntity locationId;
 
   @OneToMany(mappedBy = "departmentId")
+  @JsonIgnore
   private Set<EmployeesEntity> employees;
 
   public DepartmentsEntity() {}

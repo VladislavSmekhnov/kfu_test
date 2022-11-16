@@ -1,5 +1,7 @@
 package com.developer.hrmanagement.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
@@ -12,7 +14,8 @@ public class RegionsEntity {
   @Column(name = "id")
   private Integer id;
 
-  @OneToMany(mappedBy = "regionId", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "regionId")
+  @JsonIgnore
   private Set<CountriesEntity> countries;
 
   @Column(name = "name", length = 25)

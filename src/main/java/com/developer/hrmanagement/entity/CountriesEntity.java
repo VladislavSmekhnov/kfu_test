@@ -1,5 +1,6 @@
 package com.developer.hrmanagement.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -17,12 +18,13 @@ public class CountriesEntity {
   @Column(name = "name", length = 40)
   private String name;
 
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @ManyToOne
   @OnDelete(action = OnDeleteAction.CASCADE)
   @JoinColumn(name = "region_id", referencedColumnName = "id", nullable = false)
   private RegionsEntity regionId;
 
-  @OneToMany(mappedBy = "countryId", cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToMany(mappedBy = "countryId")
+  @JsonIgnore
   private Set<LocationsEntity> locations;
 
   public CountriesEntity() {}

@@ -1,5 +1,7 @@
 package com.developer.hrmanagement.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -19,22 +21,24 @@ public class EmployeesEntity {
   private String phoneNumber;
   private Date hireDate;
 
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name = "job_id", referencedColumnName = "id", nullable = false)
   private JobsEntity jobId;
   private BigDecimal salary;
 
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name = "manager_id", referencedColumnName = "id")
   private EmployeesEntity managerId;
 
-  @OneToMany(mappedBy = "employeeId", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "employeeId")
+  @JsonIgnore
   private Set<DependentsEntity> dependents;
 
-  @OneToMany(mappedBy = "managerId", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "managerId")
+  @JsonIgnore
   private Set<EmployeesEntity> employees;
 
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name = "department_id", referencedColumnName = "id")
   private DepartmentsEntity departmentId;
 
