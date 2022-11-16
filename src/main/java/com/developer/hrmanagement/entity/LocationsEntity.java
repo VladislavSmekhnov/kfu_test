@@ -1,56 +1,58 @@
 package com.developer.hrmanagement.entity;
 
 import com.sun.istack.NotNull;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "locations")
+@Table(name = "locations", schema = "public", catalog = "hr_db")
 public class LocationsEntity {
-  @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
   @Column(name = "id")
-  private Integer id;
-
-  @OneToMany(mappedBy = "locationId", cascade = CascadeType.ALL, orphanRemoval = true)
-  private Set<DepartmentsEntity> departments;
+  private int id;
 
   @Column(name = "street_address", length = 40)
   private String streetAddress;
+
   @Column(name = "postal_code", length = 12)
   private String postalCode;
 
   @NotNull
   @Column(name = "city", length = 30, nullable = false)
   private String city;
+
   @Column(name = "state_province", length = 25)
   private String stateProvince;
 
   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  @OnDelete(action = OnDeleteAction.CASCADE)
-  @JoinColumn(name = "country_id", nullable = false, insertable = false, updatable = false)
+  @JoinColumn(name = "country_id", referencedColumnName = "id", nullable = false)
   private CountriesEntity countryId;
+
+  @OneToMany(mappedBy = "locationId")
+  private Set<DepartmentsEntity> departments;
 
   public LocationsEntity() {}
 
-  public LocationsEntity(Integer id, String streetAddress, String postalCode, String city,
-                         String stateProvince, CountriesEntity countryId) {
+  public LocationsEntity(int id, String streetAddress, String postalCode, String city,
+                         String stateProvince, CountriesEntity countryId,
+                         Set<DepartmentsEntity> departments) {
     this.id = id;
     this.streetAddress = streetAddress;
     this.postalCode = postalCode;
     this.city = city;
     this.stateProvince = stateProvince;
     this.countryId = countryId;
+    this.departments = departments;
   }
 
-  public Integer getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(int id) {
     this.id = id;
   }
 
@@ -92,5 +94,42 @@ public class LocationsEntity {
 
   public void setCountryId(CountriesEntity countryId) {
     this.countryId = countryId;
+  }
+
+  public Set<DepartmentsEntity> getDepartments() {
+    return departments;
+  }
+
+  public void setDepartments(Set<DepartmentsEntity> departments) {
+    this.departments = departments;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    LocationsEntity that = (LocationsEntity) o;
+
+    if (id != that.id) return false;
+    if (!Objects.equals(streetAddress, that.streetAddress))
+      return false;
+    if (!Objects.equals(postalCode, that.postalCode))
+      return false;
+    if (!Objects.equals(city, that.city)) return false;
+    if (!Objects.equals(stateProvince, that.stateProvince))
+      return false;
+    return Objects.equals(countryId, that.countryId);
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (streetAddress != null ? streetAddress.hashCode() : 0);
+    result = 31 * result + (postalCode != null ? postalCode.hashCode() : 0);
+    result = 31 * result + (city != null ? city.hashCode() : 0);
+    result = 31 * result + (stateProvince != null ? stateProvince.hashCode() : 0);
+    result = 31 * result + (countryId != null ? countryId.hashCode() : 0);
+    return result;
   }
 }

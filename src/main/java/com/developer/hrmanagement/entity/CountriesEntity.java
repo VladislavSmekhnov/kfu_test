@@ -1,31 +1,29 @@
 package com.developer.hrmanagement.entity;
 
-import org.aspectj.lang.annotation.Before;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "countries")
+@Table(name = "countries", schema = "public", catalog = "hr_db")
 public class CountriesEntity {
   @Id
-  @Column(name = "id", nullable = false, length = 2)
+  @Column(name = "id", columnDefinition="CHAR(2)", length = 2)
   private String id;
-
-  @OneToMany(mappedBy = "countryId", cascade = CascadeType.ALL, orphanRemoval = true)
-  private Set<LocationsEntity> locations;
 
   @Column(name = "name", length = 40)
   private String name;
 
   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  // @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
   @OnDelete(action = OnDeleteAction.CASCADE)
-  @JoinColumn(name = "region_id", nullable = false, insertable = false, updatable = false)
+  @JoinColumn(name = "region_id", referencedColumnName = "id", nullable = false)
   private RegionsEntity regionId;
+
+  @OneToMany(mappedBy = "countryId", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<LocationsEntity> locations;
 
   public CountriesEntity() {}
 
@@ -58,11 +56,37 @@ public class CountriesEntity {
   public void setRegionId(RegionsEntity regionId) {
     this.regionId = regionId;
   }
-  public Set<LocationsEntity> getLocations() {
-    return locations;
+
+//  @Override
+//  public boolean equals(Object o) {
+//    if (this == o) return true;
+//    if (!(o instanceof CountriesEntity)) return false;
+//    CountriesEntity that = (CountriesEntity) o;
+//    return id.equals(that.id) && Objects.equals(name, that.name) && regionId.equals(that.regionId) && Objects.equals(locations, that.locations);
+//  }
+//
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, name, regionId, locations);
   }
 
-  public void setLocations(Set<LocationsEntity> locations) {
-    this.locations = locations;
+//    @Override
+//  public int hashCode() {
+//    int result = id != null ? id.hashCode() : 0;
+//    result = 31 * result + (name != null ? name.hashCode() : 0);
+//    result = 31 * result + regionId;
+//    return result;
+//  }
+
+    @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    CountriesEntity that = (CountriesEntity) o;
+
+    if (regionId != that.regionId) return false;
+    if (!Objects.equals(id, that.id)) return false;
+    return Objects.equals(name, that.name);
   }
 }

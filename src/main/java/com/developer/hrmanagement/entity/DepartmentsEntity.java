@@ -1,41 +1,44 @@
 package com.developer.hrmanagement.entity;
 
 import com.sun.istack.NotNull;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table(name = "departments")
+@Table(name = "departments", schema = "public", catalog = "hr_db")
 public class DepartmentsEntity {
-  @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
   @Column(name = "id")
-  private Integer id;
+  private int id;
 
   @NotNull
   @Column(name = "name", length = 30, nullable = false)
   private String name;
 
   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  @OnDelete(action = OnDeleteAction.CASCADE)
-  @JoinColumn(name = "location_id", nullable = false, insertable = false, updatable = false)
+  @JoinColumn(name = "location_id", referencedColumnName = "id")
   private LocationsEntity locationId;
+
+  @OneToMany(mappedBy = "departmentId")
+  private Set<EmployeesEntity> employees;
 
   public DepartmentsEntity() {}
 
-  public DepartmentsEntity(Integer id, String name, LocationsEntity locationId) {
+  public DepartmentsEntity(int id, String name, LocationsEntity locationId, Set<EmployeesEntity> employees) {
     this.id = id;
     this.name = name;
     this.locationId = locationId;
+    this.employees = employees;
   }
 
-  public Integer getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(int id) {
     this.id = id;
   }
 
@@ -53,5 +56,33 @@ public class DepartmentsEntity {
 
   public void setLocationId(LocationsEntity locationId) {
     this.locationId = locationId;
+  }
+
+  public Set<EmployeesEntity> getEmployees() {
+    return employees;
+  }
+
+  public void setEmployees(Set<EmployeesEntity> employees) {
+    this.employees = employees;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    DepartmentsEntity that = (DepartmentsEntity) o;
+
+    if (id != that.id) return false;
+    if (!Objects.equals(name, that.name)) return false;
+    return Objects.equals(locationId, that.locationId);
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    result = 31 * result + (locationId != null ? locationId.hashCode() : 0);
+    return result;
   }
 }
