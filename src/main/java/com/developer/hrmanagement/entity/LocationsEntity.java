@@ -12,7 +12,7 @@ public class LocationsEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "id")
-  private int id;
+  private Integer id;
 
   @Column(name = "street_address", length = 40)
   private String streetAddress;
@@ -48,11 +48,11 @@ public class LocationsEntity {
     this.departments = departments;
   }
 
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

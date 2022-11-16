@@ -11,7 +11,7 @@ public class JobsEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "id")
-  private int id;
+  private Integer id;
 
   @Column(name = "job_title", length = 20, nullable = false)
   private String jobTitle;
@@ -36,11 +36,11 @@ public class JobsEntity {
     this.employees = employees;
   }
 
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

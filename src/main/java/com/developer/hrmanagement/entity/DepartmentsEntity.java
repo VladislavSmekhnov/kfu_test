@@ -12,7 +12,7 @@ public class DepartmentsEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "id")
-  private int id;
+  private Integer id;
 
   @NotNull
   @Column(name = "name", length = 30, nullable = false)
@@ -34,11 +34,11 @@ public class DepartmentsEntity {
     this.employees = employees;
   }
 
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

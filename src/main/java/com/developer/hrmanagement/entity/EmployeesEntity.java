@@ -12,7 +12,7 @@ public class EmployeesEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "id")
-  private int id;
+  private Integer id;
   private String firstName;
   private String lastName;
   private String email;
@@ -58,11 +58,11 @@ public class EmployeesEntity {
     this.departmentId = departmentId;
   }
 
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
