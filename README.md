@@ -75,10 +75,13 @@ countries
 ```
 http://localhost:8080/regions/
 ```
+<img src="materials/regions_output_example.png">
+
 2. Getting data about specific department by its id
 ```
 http://localhost:8080/departments/3
 ```
+<img src="materials/departments_3_output_example.png">
 
 ### Project technology stack
 1. Java (11)
