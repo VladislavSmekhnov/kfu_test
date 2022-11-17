@@ -4,10 +4,12 @@ import com.developer.hrmanagement.entity.EmployeesEntity;
 import com.developer.hrmanagement.exception.EmployeeNotFoundException;
 import com.developer.hrmanagement.repository.EmployeesRepository;
 import com.developer.hrmanagement.service.EmployeesService;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+/**
+ * Implementation of employees interface.
+ */
 
 @Service
 public class EmployeesImpl implements EmployeesService {

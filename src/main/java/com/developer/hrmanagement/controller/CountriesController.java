@@ -4,10 +4,12 @@ package com.developer.hrmanagement.controller;
 import com.developer.hrmanagement.entity.CountriesEntity;
 import com.developer.hrmanagement.exception.CountryNotFoundException;
 import com.developer.hrmanagement.service.CountriesService;
+import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+/**
+ * Controller for countries table.
+ */
 
 @RestController
 @RequestMapping("/countries")
@@ -24,18 +26,19 @@ public class CountriesController {
   }
 
   @GetMapping("/{id}")
-  public CountriesEntity findCountryById(@PathVariable("id") String id) throws CountryNotFoundException {
+  public CountriesEntity findCountryById(@PathVariable("id") String id)
+          throws CountryNotFoundException {
     return countriesService.findById(id);
   }
 
   @PostMapping
-  public CountriesEntity saveCountry(@RequestBody CountriesEntity countrieEntity) {
-    return countriesService.saveCountries(countrieEntity);
+  public CountriesEntity saveCountry(@RequestBody CountriesEntity countriesEntity) {
+    return countriesService.saveCountries(countriesEntity);
   }
 
   @PutMapping
-  public CountriesEntity updateCountry(@RequestBody CountriesEntity countrieEntity) {
-    return countriesService.updateCountries(countrieEntity);
+  public CountriesEntity updateCountry(@RequestBody CountriesEntity countriesEntity) {
+    return countriesService.updateCountries(countriesEntity);
   }
 
   @DeleteMapping("/{id}")

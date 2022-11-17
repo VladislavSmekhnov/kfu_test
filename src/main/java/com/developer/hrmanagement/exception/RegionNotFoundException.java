@@ -1,6 +1,10 @@
 package com.developer.hrmanagement.exception;
 
-public class RegionNotFoundException extends Exception{
+/**
+ * Exception not found for regions table.
+ */
+
+public class RegionNotFoundException extends Exception {
   private final Integer regionId;
 
   public RegionNotFoundException(Integer regionId) {

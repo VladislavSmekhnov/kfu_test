@@ -4,10 +4,12 @@ import com.developer.hrmanagement.entity.DepartmentsEntity;
 import com.developer.hrmanagement.exception.DepartmentNotFoundException;
 import com.developer.hrmanagement.repository.DepartmentsRepository;
 import com.developer.hrmanagement.service.DepartmentsService;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+/**
+ * Implementation of departments interface.
+ */
 
 @Service
 public class DepartmentsImpl implements DepartmentsService {
@@ -24,7 +26,8 @@ public class DepartmentsImpl implements DepartmentsService {
 
   @Override
   public DepartmentsEntity findById(Integer id) throws DepartmentNotFoundException {
-    return departmentsRepository.findById(id).orElseThrow(() -> new DepartmentNotFoundException(id));
+    return departmentsRepository.findById(id).orElseThrow(() ->
+            new DepartmentNotFoundException(id));
   }
 
   @Override

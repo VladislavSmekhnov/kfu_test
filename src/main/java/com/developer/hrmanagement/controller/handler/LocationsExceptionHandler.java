@@ -1,11 +1,14 @@
 package com.developer.hrmanagement.controller.handler;
 
-import com.developer.hrmanagement.exception.CountryNotFoundException;
 import com.developer.hrmanagement.exception.LocationNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+/**
+ * Handler exception for locations table.
+ */
 
 @RestControllerAdvice
 public class LocationsExceptionHandler {

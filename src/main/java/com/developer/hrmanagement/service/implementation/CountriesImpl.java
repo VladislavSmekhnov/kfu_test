@@ -4,10 +4,12 @@ import com.developer.hrmanagement.entity.CountriesEntity;
 import com.developer.hrmanagement.exception.CountryNotFoundException;
 import com.developer.hrmanagement.repository.CountriesRepository;
 import com.developer.hrmanagement.service.CountriesService;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+/**
+ * Implementation of countries interface.
+ */
 
 @Service
 public class CountriesImpl implements CountriesService {

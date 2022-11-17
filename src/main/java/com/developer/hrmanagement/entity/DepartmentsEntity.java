@@ -2,10 +2,13 @@ package com.developer.hrmanagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
-
-import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
+import javax.persistence.*;
+
+/**
+ * Entity for departments table.
+ */
 
 @Entity
 @Table(name = "departments", schema = "public", catalog = "hr_db")
@@ -27,9 +30,20 @@ public class DepartmentsEntity {
   @JsonIgnore
   private Set<EmployeesEntity> employees;
 
-  public DepartmentsEntity() {}
+  public DepartmentsEntity() {
+  }
 
-  public DepartmentsEntity(int id, String name, LocationsEntity locationId, Set<EmployeesEntity> employees) {
+  /**
+   * Constructor for creation departments entity.
+   *
+   * @param id         id
+   * @param name       department name
+   * @param locationId foreign key
+   * @param employees  for foreign key
+   */
+
+  public DepartmentsEntity(int id, String name, LocationsEntity locationId,
+                           Set<EmployeesEntity> employees) {
     this.id = id;
     this.name = name;
     this.locationId = locationId;
@@ -71,20 +85,15 @@ public class DepartmentsEntity {
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
+    if (!(o instanceof DepartmentsEntity)) return false;
     DepartmentsEntity that = (DepartmentsEntity) o;
-
-    if (id != that.id) return false;
-    if (!Objects.equals(name, that.name)) return false;
-    return Objects.equals(locationId, that.locationId);
+    return Objects.equals(id, that.id) && name.equals(that.name)
+            && Objects.equals(locationId, that.locationId)
+            && Objects.equals(employees, that.employees);
   }
 
   @Override
   public int hashCode() {
-    int result = id;
-    result = 31 * result + (name != null ? name.hashCode() : 0);
-    result = 31 * result + (locationId != null ? locationId.hashCode() : 0);
-    return result;
+    return Objects.hash(id, name, locationId, employees);
   }
 }

@@ -2,10 +2,13 @@ package com.developer.hrmanagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
-
-import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
+import javax.persistence.*;
+
+/**
+ * Entity for locations table.
+ */
 
 @Entity
 @Table(name = "locations", schema = "public", catalog = "hr_db")
@@ -36,7 +39,20 @@ public class LocationsEntity {
   @JsonIgnore
   private Set<DepartmentsEntity> departments;
 
-  public LocationsEntity() {}
+  public LocationsEntity() {
+  }
+
+  /**
+   * Constructor for creation location entity.
+   *
+   * @param id location id
+   * @param streetAddress street address
+   * @param postalCode postal code
+   * @param city name of the city
+   * @param stateProvince sate name
+   * @param countryId country id from countries table
+   * @param departments for foreign keys
+   */
 
   public LocationsEntity(int id, String streetAddress, String postalCode, String city,
                          String stateProvince, CountriesEntity countryId,
@@ -109,29 +125,16 @@ public class LocationsEntity {
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
+    if (!(o instanceof LocationsEntity)) return false;
     LocationsEntity that = (LocationsEntity) o;
-
-    if (id != that.id) return false;
-    if (!Objects.equals(streetAddress, that.streetAddress))
-      return false;
-    if (!Objects.equals(postalCode, that.postalCode))
-      return false;
-    if (!Objects.equals(city, that.city)) return false;
-    if (!Objects.equals(stateProvince, that.stateProvince))
-      return false;
-    return Objects.equals(countryId, that.countryId);
+    return Objects.equals(id, that.id) && Objects.equals(streetAddress, that.streetAddress)
+            && Objects.equals(postalCode, that.postalCode) && city.equals(that.city)
+            && Objects.equals(stateProvince, that.stateProvince) && countryId.equals(that.countryId)
+            && Objects.equals(departments, that.departments);
   }
 
   @Override
   public int hashCode() {
-    int result = id;
-    result = 31 * result + (streetAddress != null ? streetAddress.hashCode() : 0);
-    result = 31 * result + (postalCode != null ? postalCode.hashCode() : 0);
-    result = 31 * result + (city != null ? city.hashCode() : 0);
-    result = 31 * result + (stateProvince != null ? stateProvince.hashCode() : 0);
-    result = 31 * result + (countryId != null ? countryId.hashCode() : 0);
-    return result;
+    return Objects.hash(id, streetAddress, postalCode, city, stateProvince, countryId, departments);
   }
 }

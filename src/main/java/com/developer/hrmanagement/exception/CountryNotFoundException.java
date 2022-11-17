@@ -1,5 +1,9 @@
 package com.developer.hrmanagement.exception;
 
+/**
+ * Exception not found for countries table.
+ */
+
 public class CountryNotFoundException extends Exception {
   private final String countryId;
 

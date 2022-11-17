@@ -1,6 +1,10 @@
 package com.developer.hrmanagement.exception;
 
-public class DependentNotFoundException extends Exception{
+/**
+ * Exception not found for dependents table.
+ */
+
+public class DependentNotFoundException extends Exception {
   private final Integer dependentId;
 
   public DependentNotFoundException(Integer dependentId) {

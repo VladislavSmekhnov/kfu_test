@@ -1,12 +1,15 @@
 package com.developer.hrmanagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Objects;
 import java.util.Set;
+import javax.persistence.*;
+
+/**
+ * Entity for employees table.
+ */
 
 @Entity
 @Table(name = "employees", schema = "public", catalog = "hr_db")
@@ -42,7 +45,25 @@ public class EmployeesEntity {
   @JoinColumn(name = "department_id", referencedColumnName = "id")
   private DepartmentsEntity departmentId;
 
-  public EmployeesEntity() {}
+  public EmployeesEntity() {
+  }
+
+  /**
+   * Constructor for creation employee entity.
+   *
+   * @param id id
+   * @param firstName employee name
+   * @param lastName employee last name
+   * @param email email
+   * @param phoneNumber phone number
+   * @param hireDate hire date
+   * @param jobId job id from jobs table
+   * @param salary salary amount
+   * @param managerId manager id
+   * @param dependents for foreign keys
+   * @param employees for foreign keys
+   * @param departmentId for foreign keys
+   */
 
   public EmployeesEntity(int id, String firstName, String lastName, String email,
                          String phoneNumber, Date hireDate, JobsEntity jobId, BigDecimal salary,
@@ -158,53 +179,24 @@ public class EmployeesEntity {
     this.departmentId = departmentId;
   }
 
-//  @Override
-//  public boolean equals(Object o) {
-//    if (this == o) return true;
-//    if (!(o instanceof EmployeesEntity)) return false;
-//    EmployeesEntity that = (EmployeesEntity) o;
-//    return id == that.id && Objects.equals(firstName, that.firstName) && lastName.equals(that.lastName) && email.equals(that.email) && Objects.equals(phoneNumber, that.phoneNumber) && hireDate.equals(that.hireDate) && jobId.equals(that.jobId) && salary.equals(that.salary) && Objects.equals(managerId, that.managerId) && Objects.equals(dependents, that.dependents) && Objects.equals(employees, that.employees) && Objects.equals(departmentId, that.departmentId);
-//  }
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof EmployeesEntity)) return false;
+    EmployeesEntity that = (EmployeesEntity) o;
+    return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName)
+            && lastName.equals(that.lastName) && email.equals(that.email)
+            && Objects.equals(phoneNumber, that.phoneNumber) && hireDate.equals(that.hireDate)
+            && jobId.equals(that.jobId) && salary.equals(that.salary)
+            && Objects.equals(managerId, that.managerId)
+            && Objects.equals(dependents, that.dependents)
+            && Objects.equals(employees, that.employees)
+            && Objects.equals(departmentId, that.departmentId);
+  }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstName, lastName, email, phoneNumber, hireDate, jobId, salary, managerId, dependents, employees, departmentId);
+    return Objects.hash(id, firstName, lastName, email, phoneNumber, hireDate, jobId, salary,
+            managerId, dependents, employees, departmentId);
   }
-
-    @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    EmployeesEntity that = (EmployeesEntity) o;
-
-    if (id != that.id) return false;
-    if (jobId != that.jobId) return false;
-    if (!Objects.equals(firstName, that.firstName))
-      return false;
-    if (!Objects.equals(lastName, that.lastName)) return false;
-    if (!Objects.equals(email, that.email)) return false;
-    if (!Objects.equals(phoneNumber, that.phoneNumber))
-      return false;
-    if (!Objects.equals(hireDate, that.hireDate)) return false;
-    if (!Objects.equals(salary, that.salary)) return false;
-    if (!Objects.equals(managerId, that.managerId))
-      return false;
-    return Objects.equals(departmentId, that.departmentId);
-  }
-
-//  @Override
-//  public int hashCode() {
-//    int result = id;
-//    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-//    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-//    result = 31 * result + (email != null ? email.hashCode() : 0);
-//    result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
-//    result = 31 * result + (hireDate != null ? hireDate.hashCode() : 0);
-//    result = 31 * result + jobId;
-//    result = 31 * result + (salary != null ? salary.hashCode() : 0);
-//    result = 31 * result + (managerId != null ? managerId.hashCode() : 0);
-//    result = 31 * result + (departmentId != null ? departmentId.hashCode() : 0);
-//    return result;
-//  }
 }
