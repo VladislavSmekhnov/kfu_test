@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  app:
+    image: 'hr-management-api:latest'
+    build:
+      context: .
+    container_name: app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/hr_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=validate
+
+  db:
+    image: db-img
+    container_name: db
+    environment:
+      - POSTGRES_DB=hr_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
