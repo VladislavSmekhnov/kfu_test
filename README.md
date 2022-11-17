@@ -4,4 +4,4 @@
 
 Database diagram:
 
-<img src="./materials/hr_database_diagram.png">
+<img src="./materials/db_diagram.png">

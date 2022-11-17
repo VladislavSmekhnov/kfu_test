@@ -1,6 +1,7 @@
 package com.developer.hrmanagement.service.implementation;
 
 import com.developer.hrmanagement.entity.LocationsEntity;
+import com.developer.hrmanagement.exception.LocationNotFoundException;
 import com.developer.hrmanagement.repository.LocationsRepository;
 import com.developer.hrmanagement.service.LocationsService;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ public class LocationsImpl implements LocationsService {
   }
 
   @Override
-  public Optional<LocationsEntity> findById(Integer id) {
-    return locationsRepository.findById(id);
+  public LocationsEntity findById(Integer id) throws LocationNotFoundException {
+    return locationsRepository.findById(id).orElseThrow(() -> new LocationNotFoundException(id));
   }
 
   @Override

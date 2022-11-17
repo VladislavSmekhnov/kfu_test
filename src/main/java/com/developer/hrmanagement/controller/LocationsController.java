@@ -1,6 +1,7 @@
 package com.developer.hrmanagement.controller;
 
 import com.developer.hrmanagement.entity.LocationsEntity;
+import com.developer.hrmanagement.exception.LocationNotFoundException;
 import com.developer.hrmanagement.service.LocationsService;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class LocationsController {
   }
 
   @GetMapping("/{id}")
-  public Optional<LocationsEntity> findLocationById(@PathVariable("id") Integer id) {
+  public LocationsEntity findLocationById(@PathVariable("id") Integer id) throws LocationNotFoundException {
     return locationsService.findById(id);
   }
 

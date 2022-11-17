@@ -1,6 +1,7 @@
 package com.developer.hrmanagement.controller;
 
 import com.developer.hrmanagement.entity.JobsEntity;
+import com.developer.hrmanagement.exception.JobNotFoundException;
 import com.developer.hrmanagement.service.JobsService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class JobsController {
   }
 
   @GetMapping("/{id}")
-  public Optional<JobsEntity> findJobById(@PathVariable("id") Integer id) {
+  public JobsEntity findJobById(@PathVariable("id") Integer id) throws JobNotFoundException {
     return jobsService.findById(id);
   }
 

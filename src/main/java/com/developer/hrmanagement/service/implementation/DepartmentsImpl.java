@@ -1,6 +1,7 @@
 package com.developer.hrmanagement.service.implementation;
 
 import com.developer.hrmanagement.entity.DepartmentsEntity;
+import com.developer.hrmanagement.exception.DepartmentNotFoundException;
 import com.developer.hrmanagement.repository.DepartmentsRepository;
 import com.developer.hrmanagement.service.DepartmentsService;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ public class DepartmentsImpl implements DepartmentsService {
   }
 
   @Override
-  public Optional<DepartmentsEntity> findById(Integer id) {
-    return departmentsRepository.findById(id);
+  public DepartmentsEntity findById(Integer id) throws DepartmentNotFoundException {
+    return departmentsRepository.findById(id).orElseThrow(() -> new DepartmentNotFoundException(id));
   }
 
   @Override

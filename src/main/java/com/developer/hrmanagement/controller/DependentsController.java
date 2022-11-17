@@ -1,6 +1,7 @@
 package com.developer.hrmanagement.controller;
 
 import com.developer.hrmanagement.entity.DependentsEntity;
+import com.developer.hrmanagement.exception.DependentNotFoundException;
 import com.developer.hrmanagement.service.DependentsService;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class DependentsController {
   }
 
   @GetMapping("/{id}")
-  public Optional<DependentsEntity> findDependentById(@PathVariable("id") Integer id) {
+  public DependentsEntity findDependentById(@PathVariable("id") Integer id) throws DependentNotFoundException {
     return dependentsService.findById(id);
   }
 

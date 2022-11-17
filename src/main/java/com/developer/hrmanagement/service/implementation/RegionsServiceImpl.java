@@ -1,6 +1,7 @@
 package com.developer.hrmanagement.service.implementation;
 
 import com.developer.hrmanagement.entity.RegionsEntity;
+import com.developer.hrmanagement.exception.RegionNotFoundException;
 import com.developer.hrmanagement.repository.RegionsRepository;
 import com.developer.hrmanagement.service.RegionsService;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ public class RegionsServiceImpl implements RegionsService {
   }
 
   @Override
-  public Optional<RegionsEntity> findById(Integer id) {
-    return regionsRepository.findById(id);
+  public RegionsEntity findById(Integer id) throws RegionNotFoundException {
+    return regionsRepository.findById(id).orElseThrow(() -> new RegionNotFoundException(id));
   }
 
   @Override

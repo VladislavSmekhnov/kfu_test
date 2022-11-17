@@ -1,6 +1,7 @@
 package com.developer.hrmanagement.service.implementation;
 
 import com.developer.hrmanagement.entity.EmployeesEntity;
+import com.developer.hrmanagement.exception.EmployeeNotFoundException;
 import com.developer.hrmanagement.repository.EmployeesRepository;
 import com.developer.hrmanagement.service.EmployeesService;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ public class EmployeesImpl implements EmployeesService {
   }
 
   @Override
-  public Optional<EmployeesEntity> findById(Integer id) {
-    return employeesRepository.findById(id);
+  public EmployeesEntity findById(Integer id) throws EmployeeNotFoundException {
+    return employeesRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
   }
 
   @Override

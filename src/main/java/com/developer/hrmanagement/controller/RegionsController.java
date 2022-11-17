@@ -1,6 +1,7 @@
 package com.developer.hrmanagement.controller;
 
 import com.developer.hrmanagement.entity.RegionsEntity;
+import com.developer.hrmanagement.exception.RegionNotFoundException;
 import com.developer.hrmanagement.service.RegionsService;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class RegionsController {
   }
 
   @GetMapping("/{id}")
-  public Optional<RegionsEntity> findRegionById(@PathVariable("id") Integer id) {
+  public RegionsEntity findRegionById(@PathVariable("id") Integer id) throws RegionNotFoundException {
     return regionsService.findById(id);
   }
 

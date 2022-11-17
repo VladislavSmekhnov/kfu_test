@@ -1,6 +1,7 @@
 package com.developer.hrmanagement.service.implementation;
 
 import com.developer.hrmanagement.entity.DependentsEntity;
+import com.developer.hrmanagement.exception.DependentNotFoundException;
 import com.developer.hrmanagement.repository.DependentsRepository;
 import com.developer.hrmanagement.service.DependentsService;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ public class DependentsImpl implements DependentsService {
   }
 
   @Override
-  public Optional<DependentsEntity> findById(Integer id) {
-    return dependentsRepository.findById(id);
+  public DependentsEntity findById(Integer id) throws DependentNotFoundException {
+    return dependentsRepository.findById(id).orElseThrow(() -> new DependentNotFoundException(id));
   }
 
   @Override

@@ -2,6 +2,8 @@ package com.developer.hrmanagement.controller;
 
 
 import com.developer.hrmanagement.entity.DepartmentsEntity;
+import com.developer.hrmanagement.exception.DepartmentNotFoundException;
+import com.developer.hrmanagement.exception.DependentNotFoundException;
 import com.developer.hrmanagement.service.DepartmentsService;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +25,7 @@ public class DepartmentsController {
   }
 
   @GetMapping("/{id}")
-  public Optional<DepartmentsEntity> findDepartmentById(@PathVariable("id") Integer id) {
+  public DepartmentsEntity findDepartmentById(@PathVariable("id") Integer id) throws DepartmentNotFoundException {
     return departmentsService.findById(id);
   }
 

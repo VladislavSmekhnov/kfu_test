@@ -1,6 +1,7 @@
 package com.developer.hrmanagement.service.implementation;
 
 import com.developer.hrmanagement.entity.CountriesEntity;
+import com.developer.hrmanagement.exception.CountryNotFoundException;
 import com.developer.hrmanagement.repository.CountriesRepository;
 import com.developer.hrmanagement.service.CountriesService;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ public class CountriesImpl implements CountriesService {
   }
 
   @Override
-  public Optional<CountriesEntity> findById(String id) {
-    return countriesRepository.findById(id);
+  public CountriesEntity findById(String id) throws CountryNotFoundException {
+    return countriesRepository.findById(id).orElseThrow(() -> new CountryNotFoundException(id));
   }
 
   @Override

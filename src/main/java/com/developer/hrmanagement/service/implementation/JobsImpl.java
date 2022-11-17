@@ -1,6 +1,7 @@
 package com.developer.hrmanagement.service.implementation;
 
 import com.developer.hrmanagement.entity.JobsEntity;
+import com.developer.hrmanagement.exception.JobNotFoundException;
 import com.developer.hrmanagement.repository.JobsRepository;
 import com.developer.hrmanagement.service.JobsService;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ public class JobsImpl implements JobsService {
   }
 
   @Override
-  public Optional<JobsEntity> findById(Integer id) {
-    return jobsRepository.findById(id);
+  public JobsEntity findById(Integer id) throws JobNotFoundException {
+    return jobsRepository.findById(id).orElseThrow(() -> new JobNotFoundException(id));
   }
 
   @Override
