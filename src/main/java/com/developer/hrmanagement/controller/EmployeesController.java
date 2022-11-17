@@ -6,7 +6,6 @@ import com.developer.hrmanagement.service.EmployeesService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/employees")

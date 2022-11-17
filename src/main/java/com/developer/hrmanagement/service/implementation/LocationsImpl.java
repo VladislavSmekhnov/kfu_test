@@ -4,10 +4,12 @@ import com.developer.hrmanagement.entity.LocationsEntity;
 import com.developer.hrmanagement.exception.LocationNotFoundException;
 import com.developer.hrmanagement.repository.LocationsRepository;
 import com.developer.hrmanagement.service.LocationsService;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+/**
+ * Implementation of locations interface.
+ */
 
 @Service
 public class LocationsImpl implements LocationsService {

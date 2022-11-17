@@ -158,14 +158,6 @@ public class EmployeesEntity {
     this.departmentId = departmentId;
   }
 
-//  @Override
-//  public boolean equals(Object o) {
-//    if (this == o) return true;
-//    if (!(o instanceof EmployeesEntity)) return false;
-//    EmployeesEntity that = (EmployeesEntity) o;
-//    return id == that.id && Objects.equals(firstName, that.firstName) && lastName.equals(that.lastName) && email.equals(that.email) && Objects.equals(phoneNumber, that.phoneNumber) && hireDate.equals(that.hireDate) && jobId.equals(that.jobId) && salary.equals(that.salary) && Objects.equals(managerId, that.managerId) && Objects.equals(dependents, that.dependents) && Objects.equals(employees, that.employees) && Objects.equals(departmentId, that.departmentId);
-//  }
-
   @Override
   public int hashCode() {
     return Objects.hash(id, firstName, lastName, email, phoneNumber, hireDate, jobId, salary, managerId, dependents, employees, departmentId);
@@ -178,7 +170,7 @@ public class EmployeesEntity {
 
     EmployeesEntity that = (EmployeesEntity) o;
 
-    if (id != that.id) return false;
+    if (!Objects.equals(id, that.id)) return false;
     if (jobId != that.jobId) return false;
     if (!Objects.equals(firstName, that.firstName))
       return false;
@@ -192,19 +184,4 @@ public class EmployeesEntity {
       return false;
     return Objects.equals(departmentId, that.departmentId);
   }
-
-//  @Override
-//  public int hashCode() {
-//    int result = id;
-//    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-//    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-//    result = 31 * result + (email != null ? email.hashCode() : 0);
-//    result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
-//    result = 31 * result + (hireDate != null ? hireDate.hashCode() : 0);
-//    result = 31 * result + jobId;
-//    result = 31 * result + (salary != null ? salary.hashCode() : 0);
-//    result = 31 * result + (managerId != null ? managerId.hashCode() : 0);
-//    result = 31 * result + (departmentId != null ? departmentId.hashCode() : 0);
-//    return result;
-//  }
 }

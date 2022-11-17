@@ -1,6 +1,5 @@
 package com.developer.hrmanagement.controller.handler;
 
-import com.developer.hrmanagement.exception.CountryNotFoundException;
 import com.developer.hrmanagement.exception.LocationNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

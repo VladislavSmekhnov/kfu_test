@@ -59,26 +59,10 @@ public class CountriesEntity {
     this.regionId = regionId;
   }
 
-//  @Override
-//  public boolean equals(Object o) {
-//    if (this == o) return true;
-//    if (!(o instanceof CountriesEntity)) return false;
-//    CountriesEntity that = (CountriesEntity) o;
-//    return id.equals(that.id) && Objects.equals(name, that.name) && regionId.equals(that.regionId) && Objects.equals(locations, that.locations);
-//  }
-//
   @Override
   public int hashCode() {
     return Objects.hash(id, name, regionId, locations);
   }
-
-//    @Override
-//  public int hashCode() {
-//    int result = id != null ? id.hashCode() : 0;
-//    result = 31 * result + (name != null ? name.hashCode() : 0);
-//    result = 31 * result + regionId;
-//    return result;
-//  }
 
     @Override
   public boolean equals(Object o) {

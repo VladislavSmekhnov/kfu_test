@@ -86,7 +86,7 @@ public class JobsEntity {
 
     JobsEntity that = (JobsEntity) o;
 
-    if (id != that.id) return false;
+    if (!Objects.equals(id, that.id)) return false;
     if (!Objects.equals(jobTitle, that.jobTitle)) return false;
     if (!Objects.equals(minSalary, that.minSalary))
       return false;

@@ -4,10 +4,12 @@ import com.developer.hrmanagement.entity.JobsEntity;
 import com.developer.hrmanagement.exception.JobNotFoundException;
 import com.developer.hrmanagement.repository.JobsRepository;
 import com.developer.hrmanagement.service.JobsService;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+/**
+ * Implementation of jobs interface.
+ */
 
 @Service
 public class JobsImpl implements JobsService {

@@ -4,10 +4,12 @@ import com.developer.hrmanagement.entity.DependentsEntity;
 import com.developer.hrmanagement.exception.DependentNotFoundException;
 import com.developer.hrmanagement.repository.DependentsRepository;
 import com.developer.hrmanagement.service.DependentsService;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+/**
+ * Implementation of dependents interface.
+ */
 
 @Service
 public class DependentsImpl implements DependentsService {

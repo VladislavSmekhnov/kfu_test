@@ -3,12 +3,10 @@ package com.developer.hrmanagement.controller;
 
 import com.developer.hrmanagement.entity.DepartmentsEntity;
 import com.developer.hrmanagement.exception.DepartmentNotFoundException;
-import com.developer.hrmanagement.exception.DependentNotFoundException;
 import com.developer.hrmanagement.service.DepartmentsService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/departments")

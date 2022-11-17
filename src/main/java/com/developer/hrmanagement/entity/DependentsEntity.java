@@ -82,7 +82,7 @@ public class DependentsEntity {
 
     DependentsEntity that = (DependentsEntity) o;
 
-    if (id != that.id) return false;
+    if (!Objects.equals(id, that.id)) return false;
     if (employeeId != that.employeeId) return false;
     if (!Objects.equals(firstName, that.firstName))
       return false;
@@ -90,28 +90,8 @@ public class DependentsEntity {
     return Objects.equals(relationship, that.relationship);
   }
 
-//  @Override
-//  public boolean equals(Object o) {
-//    if (this == o) return true;
-//    if (!(o instanceof DependentsEntity)) return false;
-//    DependentsEntity that = (DependentsEntity) o;
-//    return id == that.id && firstName.equals(that.firstName) && lastName.equals(that.lastName) && relationship.equals(that.relationship) && employeeId.equals(that.employeeId);
-//  }
-
   @Override
   public int hashCode() {
     return Objects.hash(id, firstName, lastName, relationship, employeeId);
   }
-
-
-//  @Override
-//  public int hashCode() {
-//    int result = id;
-//    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-//    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-//    result = 31 * result + (relationship != null ? relationship.hashCode() : 0);
-//    result = 31 * result + employeeId;
-//    return result;
-//  }
-
 }

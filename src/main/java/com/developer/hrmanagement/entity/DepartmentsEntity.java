@@ -75,7 +75,7 @@ public class DepartmentsEntity {
 
     DepartmentsEntity that = (DepartmentsEntity) o;
 
-    if (id != that.id) return false;
+    if (!Objects.equals(id, that.id)) return false;
     if (!Objects.equals(name, that.name)) return false;
     return Objects.equals(locationId, that.locationId);
   }

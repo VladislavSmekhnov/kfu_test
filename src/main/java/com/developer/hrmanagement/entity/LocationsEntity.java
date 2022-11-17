@@ -113,7 +113,7 @@ public class LocationsEntity {
 
     LocationsEntity that = (LocationsEntity) o;
 
-    if (id != that.id) return false;
+    if (!Objects.equals(id, that.id)) return false;
     if (!Objects.equals(streetAddress, that.streetAddress))
       return false;
     if (!Objects.equals(postalCode, that.postalCode))

@@ -7,7 +7,6 @@ import com.developer.hrmanagement.service.CountriesService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/countries")
@@ -29,13 +28,13 @@ public class CountriesController {
   }
 
   @PostMapping
-  public CountriesEntity saveCountry(@RequestBody CountriesEntity countrieEntity) {
-    return countriesService.saveCountries(countrieEntity);
+  public CountriesEntity saveCountry(@RequestBody CountriesEntity countriesEntity) {
+    return countriesService.saveCountries(countriesEntity);
   }
 
   @PutMapping
-  public CountriesEntity updateCountry(@RequestBody CountriesEntity countrieEntity) {
-    return countriesService.updateCountries(countrieEntity);
+  public CountriesEntity updateCountry(@RequestBody CountriesEntity countriesEntity) {
+    return countriesService.updateCountries(countriesEntity);
   }
 
   @DeleteMapping("/{id}")
