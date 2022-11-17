@@ -1,5 +1,9 @@
 package com.developer.hrmanagement.exception;
 
+/**
+ * Exception not found for departments table.
+ */
+
 public class DepartmentNotFoundException extends Exception {
   private final Integer departmentId;
 

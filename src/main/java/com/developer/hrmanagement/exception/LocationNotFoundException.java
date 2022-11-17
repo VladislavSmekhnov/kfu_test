@@ -1,6 +1,10 @@
 package com.developer.hrmanagement.exception;
 
-public class LocationNotFoundException extends Exception{
+/**
+ * Exception not found for locations table.
+ */
+
+public class LocationNotFoundException extends Exception {
   private final Integer locationId;
 
   public LocationNotFoundException(Integer locationId) {

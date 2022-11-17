@@ -6,6 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * Handler exception for dependents table.
+ */
+
 @RestControllerAdvice
 public class DependentsExceptionHandler {
   @ExceptionHandler(DependentNotFoundException.class)

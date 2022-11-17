@@ -3,9 +3,12 @@ package com.developer.hrmanagement.controller;
 import com.developer.hrmanagement.entity.JobsEntity;
 import com.developer.hrmanagement.exception.JobNotFoundException;
 import com.developer.hrmanagement.service.JobsService;
+import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+/**
+ * Controller for jobs table.
+ */
 
 @RestController
 @RequestMapping("/jobs")
@@ -15,6 +18,7 @@ public class JobsController {
   public JobsController(JobsService jobsService) {
     this.jobsService = jobsService;
   }
+
   @GetMapping
   public List<JobsEntity> findAllJobs() {
     return jobsService.findAllJobs();

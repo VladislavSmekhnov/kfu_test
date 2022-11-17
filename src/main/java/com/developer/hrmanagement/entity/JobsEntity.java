@@ -1,11 +1,14 @@
 package com.developer.hrmanagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Set;
+import javax.persistence.*;
+
+/**
+ * Entity for jobs table.
+ */
 
 @Entity
 @Table(name = "jobs", schema = "public", catalog = "hr_db")
@@ -28,7 +31,18 @@ public class JobsEntity {
   @JsonIgnore
   private Set<EmployeesEntity> employees;
 
-  public JobsEntity() {}
+  public JobsEntity() {
+  }
+
+  /**
+   * Constructor for creation job entity.
+   *
+   * @param id id
+   * @param jobTitle title
+   * @param minSalary minimum salary at the specific job
+   * @param maxSalary minimum salary at the specific job
+   * @param employees for foreign keys
+   */
 
   public JobsEntity(int id, String jobTitle, BigDecimal minSalary, BigDecimal maxSalary,
                     Set<EmployeesEntity> employees) {
@@ -82,23 +96,16 @@ public class JobsEntity {
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
+    if (!(o instanceof JobsEntity)) return false;
     JobsEntity that = (JobsEntity) o;
-
-    if (!Objects.equals(id, that.id)) return false;
-    if (!Objects.equals(jobTitle, that.jobTitle)) return false;
-    if (!Objects.equals(minSalary, that.minSalary))
-      return false;
-    return Objects.equals(maxSalary, that.maxSalary);
+    return Objects.equals(id, that.id) && jobTitle.equals(that.jobTitle)
+            && Objects.equals(minSalary, that.minSalary)
+            && Objects.equals(maxSalary, that.maxSalary)
+            && Objects.equals(employees, that.employees);
   }
 
   @Override
   public int hashCode() {
-    int result = id;
-    result = 31 * result + (jobTitle != null ? jobTitle.hashCode() : 0);
-    result = 31 * result + (minSalary != null ? minSalary.hashCode() : 0);
-    result = 31 * result + (maxSalary != null ? maxSalary.hashCode() : 0);
-    return result;
+    return Objects.hash(id, jobTitle, minSalary, maxSalary, employees);
   }
 }

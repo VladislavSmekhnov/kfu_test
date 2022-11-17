@@ -3,9 +3,12 @@ package com.developer.hrmanagement.controller;
 import com.developer.hrmanagement.entity.DependentsEntity;
 import com.developer.hrmanagement.exception.DependentNotFoundException;
 import com.developer.hrmanagement.service.DependentsService;
+import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+/**
+ * Controller for dependents table.
+ */
 
 @RestController
 @RequestMapping("/dependents")
@@ -22,7 +25,8 @@ public class DependentsController {
   }
 
   @GetMapping("/{id}")
-  public DependentsEntity findDependentById(@PathVariable("id") Integer id) throws DependentNotFoundException {
+  public DependentsEntity findDependentById(@PathVariable("id") Integer id)
+          throws DependentNotFoundException {
     return dependentsService.findById(id);
   }
 

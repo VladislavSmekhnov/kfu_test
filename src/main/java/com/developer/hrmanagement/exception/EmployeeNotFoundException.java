@@ -1,6 +1,10 @@
 package com.developer.hrmanagement.exception;
 
-public class EmployeeNotFoundException extends Exception{
+/**
+ * Exception not found for employees table.
+ */
+
+public class EmployeeNotFoundException extends Exception {
   private final Integer employeeId;
 
   public EmployeeNotFoundException(Integer employeeId) {

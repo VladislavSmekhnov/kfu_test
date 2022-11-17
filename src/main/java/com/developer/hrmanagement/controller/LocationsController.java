@@ -3,9 +3,12 @@ package com.developer.hrmanagement.controller;
 import com.developer.hrmanagement.entity.LocationsEntity;
 import com.developer.hrmanagement.exception.LocationNotFoundException;
 import com.developer.hrmanagement.service.LocationsService;
+import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+/**
+ * Controller for locations table.
+ */
 
 @RestController
 @RequestMapping("/locations")
@@ -22,7 +25,8 @@ public class LocationsController {
   }
 
   @GetMapping("/{id}")
-  public LocationsEntity findLocationById(@PathVariable("id") Integer id) throws LocationNotFoundException {
+  public LocationsEntity findLocationById(@PathVariable("id") Integer id)
+          throws LocationNotFoundException {
     return locationsService.findById(id);
   }
 

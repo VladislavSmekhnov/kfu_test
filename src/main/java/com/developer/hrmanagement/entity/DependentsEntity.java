@@ -1,7 +1,11 @@
 package com.developer.hrmanagement.entity;
 
-import javax.persistence.*;
 import java.util.Objects;
+import javax.persistence.*;
+
+/**
+ * Entity for dependents table.
+ */
 
 @Entity
 @Table(name = "dependents", schema = "public", catalog = "hr_db")
@@ -24,7 +28,18 @@ public class DependentsEntity {
   @JoinColumn(name = "employee_id", referencedColumnName = "id", nullable = false)
   private EmployeesEntity employeeId;
 
-  public DependentsEntity() {}
+  public DependentsEntity() {
+  }
+
+  /**
+   * Constructor for creation dependents entity.
+   *
+   * @param id id
+   * @param firstName first name
+   * @param lastName last name
+   * @param relationship child
+   * @param employeeId foreign key
+   */
 
   public DependentsEntity(int id, String firstName, String lastName, String relationship,
                           EmployeesEntity employeeId) {
@@ -78,16 +93,11 @@ public class DependentsEntity {
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
+    if (!(o instanceof DependentsEntity)) return false;
     DependentsEntity that = (DependentsEntity) o;
-
-    if (!Objects.equals(id, that.id)) return false;
-    if (employeeId != that.employeeId) return false;
-    if (!Objects.equals(firstName, that.firstName))
-      return false;
-    if (!Objects.equals(lastName, that.lastName)) return false;
-    return Objects.equals(relationship, that.relationship);
+    return Objects.equals(id, that.id) && firstName.equals(that.firstName)
+            && lastName.equals(that.lastName) && relationship.equals(that.relationship)
+            && employeeId.equals(that.employeeId);
   }
 
   @Override

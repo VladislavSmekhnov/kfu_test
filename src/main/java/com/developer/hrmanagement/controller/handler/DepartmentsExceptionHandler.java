@@ -6,6 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * Handler exception for departments table.
+ */
+
 @RestControllerAdvice
 public class DepartmentsExceptionHandler {
   @ExceptionHandler(DepartmentNotFoundException.class)

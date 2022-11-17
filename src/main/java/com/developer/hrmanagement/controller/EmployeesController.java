@@ -3,9 +3,12 @@ package com.developer.hrmanagement.controller;
 import com.developer.hrmanagement.entity.EmployeesEntity;
 import com.developer.hrmanagement.exception.EmployeeNotFoundException;
 import com.developer.hrmanagement.service.EmployeesService;
+import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+/**
+ * Controller for employees table.
+ */
 
 @RestController
 @RequestMapping("/employees")
@@ -22,7 +25,8 @@ public class EmployeesController {
   }
 
   @GetMapping("/{id}")
-  public EmployeesEntity findEmployeeById(@PathVariable("id") Integer id) throws EmployeeNotFoundException {
+  public EmployeesEntity findEmployeeById(@PathVariable("id") Integer id)
+          throws EmployeeNotFoundException {
     return employeesService.findById(id);
   }
 
