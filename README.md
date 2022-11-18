@@ -21,6 +21,8 @@ README.md                   -> Project's readme
 ### Run app
 
 #### On GNU\Linux
+Make sure you have a Docker and Docker-compose installed on your OS.
+
 If you try to run this app on Windows, it's great chance to download and install <a href="https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux">WSL</a> !
 
 In root project directory:
